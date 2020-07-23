@@ -12,4 +12,4 @@ Contributions are welcome!
 - [Create a new app](https://apps.twitter.com/app/new) on twitter and generate your API keys
 - Replace the API keys in `secrets.py` with yours
 - Run `pip install -r requirements.txt`
-- Run `python main.py`
+- Run `python twitter-bot.py`

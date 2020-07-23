@@ -33,7 +33,7 @@ class Listener(StreamListener):
             print("Won't retweet own tweet")
         else:
             if data['in_reply_to_status_id'] == None:
-                if 1 in [1 if i in data['text'] else 0 for i in watch_list]:
+                if 'retweeted_status' not in data.keys():
 
                     try:
                         # Only reply if any of the hashtags in @reply_list is present
@@ -48,7 +48,7 @@ class Listener(StreamListener):
                     except TweepError:
                         print('Tweet already retweeted')
                 else:
-                    print("It's just a useless retweet")
+                    print("Not allowed to retweet a retweet")
             else:
                 print('Just a Commnent')
 
