@@ -61,6 +61,7 @@ class Listener(StreamListener):
                     print("Not allowed to retweet a retweet")
             else:
                 print('Just a Commnent')
+        time.sleep(5)
 
 
 mylistner = Listener()
