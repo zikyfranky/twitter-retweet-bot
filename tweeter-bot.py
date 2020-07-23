@@ -2,6 +2,7 @@ from tweepy import API, OAuthHandler, TweepError, Stream, StreamListener
 from secrets import *
 import random
 import os
+import re
 
 
 auth = OAuthHandler(
@@ -38,7 +39,11 @@ class Listener(StreamListener):
                     try:
                         # Only reply if any of the hashtags in @reply_list is present
                         if 1 in [1 if i in data['text'] else 0 for i in reply_list]:
-                            api.update_status(reply, data['id'])
+                            # Reply if the tweet contain Day [digit]
+                            if re.search("Day\s*\d+"):
+                                api.update_status(reply, data['id'])
+                            else:
+                                print('Not a relevant Update')
                         # Like the tweet
                         api.create_favorite(data['id'])
                         # Follow the Poster
