@@ -43,14 +43,18 @@ class Listener(StreamListener):
                             r = re.search("Day\s*\d+", data['text'])
                             if r != None:
                                 api.update_status(reply, data['id'])
+                                print("Replied to a status")
                             else:
                                 print('Not a relevant Update')
                         # Like the tweet
                         api.create_favorite(data['id'])
+                        print("Like Post")
                         # Follow the Poster
                         api.create_friendship(data['user']['screen_name'])
+                        print("Followed "+data['user']['screen_name'])
                         # Finally retweet
                         api.retweet(data['id'])
+                        print("Retweeted Post")
                     except TweepError:
                         print('Tweet already retweeted')
                 else:
