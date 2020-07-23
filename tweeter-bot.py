@@ -3,7 +3,7 @@ from secrets import *
 import random
 import os
 import re
-
+import time
 
 auth = OAuthHandler(
     consumer_key=consumer_key, consumer_secret=consumer_secret)
@@ -40,7 +40,7 @@ class Listener(StreamListener):
                         # Only reply if any of the hashtags in @reply_list is present
                         if 1 in [1 if i in data['text'] else 0 for i in reply_list]:
                             # Reply if the tweet contain Day [digit]
-                            r = re.search("Days?\s*\d+", data['text'])
+                            r = re.search("[d|D]ays?\s*\d+", data['text'])
                             if r != None:
                                 api.update_status(reply, data['id'])
                                 print("Replied to a status")
